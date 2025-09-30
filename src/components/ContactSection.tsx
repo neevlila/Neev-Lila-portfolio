@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Clock, Send, Loader2 } from 'lucide-react'; // Added Loader2 for loading indicator
+import { Mail, MapPin, Clock, Send, Loader2 } from 'lucide-react'; 
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,10 +14,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-// --- FIX: Updated import paths to use the alias @/components/ui/ ---
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from '@/components/ui/sonner';
-// ------------------------------------------------------------------
 
 // --- Web3Forms Configuration ---
 const WEB3FORMS_ACCESS_KEY = "f5447994-b4cb-49b8-8f93-5d25ae14855f";
@@ -43,30 +41,24 @@ const ContactSection = () => {
 
   // Function to handle form submission and API call
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Show an initial toast immediately, replacing the previous one if it exists
     toast.info("Sending message...", { description: "Please wait while your message is transmitted.", id: "contact-form-status", duration: 10000 });
 
     try {
-      // 1. Create a FormData object for the fetch request
       const formData = new FormData();
       
-      // Append form fields
       formData.append("name", values.name);
       formData.append("email", values.email);
       formData.append("message", values.message);
 
-      // Append Web3Forms configuration
       formData.append("access_key", WEB3FORMS_ACCESS_KEY);
       formData.append("subject", `New Portfolio Message from ${values.name}`);
       formData.append("recipient", RECIPIENT_EMAIL);
       
-      // 2. Send the request
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         body: formData,
       });
 
-      // 3. Handle the response
       const data = await response.json();
 
       if (data.success) {
@@ -74,7 +66,7 @@ const ContactSection = () => {
           description: "Thank you for reaching out. I will get back to you soon.",
           id: "contact-form-status",
         });
-        form.reset(); // Reset form on success
+        form.reset(); 
       } else {
         console.error("Submission Error:", data);
         toast.error("Submission Failed", {
@@ -98,6 +90,10 @@ const ContactSection = () => {
   ];
 
   const { isSubmitting } = form.formState;
+
+  // Custom class string to ensure dark mode styling for Input/Textarea.
+  // This overrides the default shadcn input styles which might default to a light theme background.
+  const darkInputClasses = "bg-background text-foreground focus-visible:ring-primary focus-visible:border-primary border-border";
 
   return (
     <section id="contact" className="py-20 lg:py-32 bg-background">
@@ -152,7 +148,13 @@ const ContactSection = () => {
                           <FormItem>
                             <FormLabel>Name</FormLabel>
                             <FormControl>
-                              <Input placeholder="Your full name" {...field} disabled={isSubmitting} />
+                              {/* --- FIX APPLIED HERE --- */}
+                              <Input 
+                                placeholder="Your full name" 
+                                {...field} 
+                                disabled={isSubmitting} 
+                                className={darkInputClasses}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -165,7 +167,13 @@ const ContactSection = () => {
                           <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                              <Input placeholder="your@email.com" {...field} disabled={isSubmitting} />
+                              {/* --- FIX APPLIED HERE --- */}
+                              <Input 
+                                placeholder="your@email.com" 
+                                {...field} 
+                                disabled={isSubmitting} 
+                                className={darkInputClasses}
+                              />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -179,9 +187,10 @@ const ContactSection = () => {
                         <FormItem>
                           <FormLabel>Message</FormLabel>
                           <FormControl>
+                            {/* --- FIX APPLIED HERE --- */}
                             <Textarea
                               placeholder="Tell me about your project or just say hello..."
-                              className="min-h-[120px]"
+                              className={`min-h-[120px] ${darkInputClasses}`}
                               {...field}
                               disabled={isSubmitting}
                             />
