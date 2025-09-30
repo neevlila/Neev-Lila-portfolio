@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 224 71.4% 4.1%; /* slate-950 */
+    --foreground: 210 20% 98%; /* slate-50 */
+
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 217.2 91.2% 59.8%; /* blue-500 */
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 220 13% 18%; /* slate-800 */
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 220 9.8% 46.5%; /* slate-500 */
+    --muted-foreground: 220 14.3% 71.8%; /* slate-400 */
+
+    --accent: 220 13% 18%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 13% 22%; /* slate-700 */
+    --input: 220 13% 22%;
+    --ring: 217.2 91.2% 59.8%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 224 71.4% 4.1%;
+    --foreground: 210 20% 98%;
+
+    --card: 224 71.4% 4.1%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 224 71.4% 4.1%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 210 20% 98%;
+
+    --secondary: 220 13% 18%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 220 9.8% 46.5%;
+    --muted-foreground: 220 14.3% 71.8%;
+
+    --accent: 220 13% 18%;
+    --accent-foreground: 210 20% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+
+    --border: 220 13% 22%;
+    --input: 220 13% 22%;
+    --ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  body.dark {
+    background-image: radial-gradient(ellipse at top, hsla(var(--primary), 0.1), transparent 60%);
+  }
+}
+
+@layer utilities {
+  .animation-delay-500 {
+    animation-delay: 0.5s;
+  }
+
+  .animation-delay-1000 {
+    animation-delay: 1s;
+  }
+
+  .animation-delay-1500 {
+    animation-delay: 1.5s;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
