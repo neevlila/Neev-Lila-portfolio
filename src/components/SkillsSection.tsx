@@ -50,7 +50,7 @@ const SkillsSection = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
           {skillCategories.map((skillGroup) => (
-            <Card key={skillGroup.category} className="bg-secondary border-border h-full">
+            <Card key={skillGroup.category} className="bg-secondary border-border h-full transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10">
               <CardHeader>
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 bg-primary/10 text-primary rounded-lg flex items-center justify-center shrink-0">
