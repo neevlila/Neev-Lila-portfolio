@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Clock, Send } from 'lucide-react';
+import { Mail, MapPin, Clock, Send, Loader2 } from 'lucide-react'; // Added Loader2 for loading indicator
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,8 +14,15 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card';
-import { toast } from './ui/sonner';
+// --- FIX: Updated import paths to use the alias @/components/ui/ ---
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { toast } from '@/components/ui/sonner';
+// ------------------------------------------------------------------
+
+// --- Web3Forms Configuration ---
+const WEB3FORMS_ACCESS_KEY = "f5447994-b4cb-49b8-8f93-5d25ae14855f";
+const RECIPIENT_EMAIL = "nneev223@gmail.com";
+// -------------------------------
 
 // Form Schema
 const formSchema = z.object({
@@ -34,19 +41,63 @@ const ContactSection = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast.success("Message Sent!", {
-      description: "Thank you for reaching out. I will get back to you soon.",
-    });
-    form.reset();
+  // Function to handle form submission and API call
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    // Show an initial toast immediately, replacing the previous one if it exists
+    toast.info("Sending message...", { description: "Please wait while your message is transmitted.", id: "contact-form-status", duration: 10000 });
+
+    try {
+      // 1. Create a FormData object for the fetch request
+      const formData = new FormData();
+      
+      // Append form fields
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("message", values.message);
+
+      // Append Web3Forms configuration
+      formData.append("access_key", WEB3FORMS_ACCESS_KEY);
+      formData.append("subject", `New Portfolio Message from ${values.name}`);
+      formData.append("recipient", RECIPIENT_EMAIL);
+      
+      // 2. Send the request
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      // 3. Handle the response
+      const data = await response.json();
+
+      if (data.success) {
+        toast.success("Message Sent!", {
+          description: "Thank you for reaching out. I will get back to you soon.",
+          id: "contact-form-status",
+        });
+        form.reset(); // Reset form on success
+      } else {
+        console.error("Submission Error:", data);
+        toast.error("Submission Failed", {
+          description: data.message || "An unknown error occurred. Please try again.",
+          id: "contact-form-status",
+        });
+      }
+    } catch (error) {
+      console.error("Network or Fetch Error:", error);
+      toast.error("Network Error", {
+        description: "Could not send the message. Please check your connection.",
+        id: "contact-form-status",
+      });
+    }
   }
 
   const contactDetails = [
-    { icon: Mail, label: "Email", value: "nneev223@gmail.com", href: "mailto:nneev223@gmail.com" },
+    { icon: Mail, label: "Email", value: RECIPIENT_EMAIL, href: `mailto:${RECIPIENT_EMAIL}` },
     { icon: MapPin, label: "Location", value: "India" },
     { icon: Clock, label: "Available", value: "Monday - Friday" },
   ];
+
+  const { isSubmitting } = form.formState;
 
   return (
     <section id="contact" className="py-20 lg:py-32 bg-background">
@@ -81,7 +132,7 @@ const ContactSection = () => {
             </div>
           </div>
 
-          {/* Right Column */}
+          {/* Right Column - Form */}
           <div className="lg:col-span-3">
             <Card className="bg-secondary border-border p-2 sm:p-4">
               <CardHeader>
@@ -101,7 +152,7 @@ const ContactSection = () => {
                           <FormItem>
                             <FormLabel>Name</FormLabel>
                             <FormControl>
-                              <Input placeholder="Your full name" {...field} />
+                              <Input placeholder="Your full name" {...field} disabled={isSubmitting} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -114,7 +165,7 @@ const ContactSection = () => {
                           <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                              <Input placeholder="your@email.com" {...field} />
+                              <Input placeholder="your@email.com" {...field} disabled={isSubmitting} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -132,15 +183,30 @@ const ContactSection = () => {
                               placeholder="Tell me about your project or just say hello..."
                               className="min-h-[120px]"
                               {...field}
+                              disabled={isSubmitting}
                             />
                           </FormControl>
                           <FormMessage />
                         </FormItem>
                       )}
                     />
-                    <Button type="submit" size="lg" className="w-full">
-                      <Send className="mr-2 h-4 w-4" />
-                      Send Message
+                    <Button 
+                      type="submit" 
+                      size="lg" 
+                      className="w-full" 
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="mr-2 h-4 w-4" />
+                          Send Message
+                        </>
+                      )}
                     </Button>
                   </form>
                 </Form>
