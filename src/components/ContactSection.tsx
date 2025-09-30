@@ -91,8 +91,6 @@ const ContactSection = () => {
 
   const { isSubmitting } = form.formState;
 
-  // Custom class string to ensure dark mode styling for Input/Textarea.
-  // This overrides the default shadcn input styles which might default to a light theme background.
   const darkInputClasses = "bg-background text-foreground focus-visible:ring-primary focus-visible:border-primary border-border";
 
   return (
