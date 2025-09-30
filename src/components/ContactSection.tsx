@@ -85,7 +85,7 @@ const ContactSection = () => {
 
   const contactDetails = [
     { icon: Mail, label: "Email", value: RECIPIENT_EMAIL, href: `mailto:${RECIPIENT_EMAIL}` },
-    { icon: MapPin, label: "Location", value: "India" },
+    { icon: MapPin, label: "Location", value: "Ahmedabad, India" },
     { icon: Clock, label: "Available", value: "Monday - Friday" },
   ];
 
