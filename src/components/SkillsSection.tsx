@@ -1,26 +1,25 @@
 import React from 'react';
-import { Bot, ShieldCheck, Rocket } from 'lucide-react';
+import { Code, Bug, Wrench } from 'lucide-react';  // updated icons
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const SkillsSection = () => {
   const skillCategories = [
     {
-      category: "Generative AI & Tools",
-      icon: Bot,
+      category: "Skills",
+      icon: Code,
       items: [
         "Prompt Engineering",
-        "Google Gemini",
-        "Generative AI Tools",
+        "Python",
+        "HTML",
+        "CSS",
+        "JavaScript",
         "AI-Augmented Development",
-        "AI-Powered Code Generation",
-        "ChatGPT",
-        "GitHub Copilot",
-        "Gamma",
+        "Rapid Prototyping"
       ]
     },
     {
       category: "Quality & Testing",
-      icon: ShieldCheck,
+      icon: Bug,
       items: [
         "Software Testing",
         "Quality Assurance",
@@ -28,10 +27,16 @@ const SkillsSection = () => {
       ]
     },
     {
-      category: "Core Focus",
-      icon: Rocket,
+      category: "Tools",
+      icon: Wrench,
       items: [
-        "Rapid Prototyping",
+        "Google Gemini",
+        "ChatGPT",
+        "GitHub Copilot",
+        "VS Code",
+        "Git & GitHub",
+        "Vercel",
+        "Generative AI Tools"
       ]
     },
   ];
