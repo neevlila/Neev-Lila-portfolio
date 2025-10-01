@@ -64,12 +64,17 @@ const Particles = ({ count = 1000 }) => {
 };
 
 const Background3D = () => {
+  const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
+  const particleCount = isMobile ? 300 : 1000;
+  const dpr = isMobile ? [1, 1.5] : undefined; // cap DPR on mobile for performance/visibility
+
   return (
     <Canvas
+      dpr={dpr}
       camera={{ position: [0, 0, 10], fov: 75 }}
       style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}
     >
-      <Particles />
+      <Particles count={particleCount} />
     </Canvas>
   );
 };

@@ -22,11 +22,91 @@ const WEB3FORMS_ACCESS_KEY = "f5447994-b4cb-49b8-8f93-5d25ae14855f";
 const RECIPIENT_EMAIL = "nneev223@gmail.com";
 // -------------------------------
 
-// Form Schema
+// Disposable email guard
+const DISPOSABLE_DOMAINS = [
+  // Mailinator family
+  "mailinator.com", "mailinator.net", "mailinator.org", "mailinator.co",
+  // Yopmail family
+  "yopmail.com", "yopmail.fr", "yopmail.net", "cool.fr.nf", "jetable.fr.nf", "nospam.ze.tc", "nomail.xl.cx",
+  // Guerrilla Mail
+  "sharklasers.com", "guerrillamail.com", "guerrillamail.de", "guerrillamail.info", "guerrillamail.net", "guerrillamail.org",
+  // 10 minute mail
+  "10minutemail.com", "10minutemail.net", "10minutesemail.net",
+  // Temp-mail
+  "temp-mail.org", "tempmail.org", "tempmail.com", "tempmail.net", "mytemp.email",
+  // Other common providers
+  "trashmail.com", "trashmail.de", "dispostable.com", "getnada.com", "inboxbear.com", "throwawaymail.com", "fakemail.net",
+];
+
+function isDisposableEmail(email: string) {
+  const domain = email.toLowerCase().split("@")[1] || "";
+  return DISPOSABLE_DOMAINS.some((d) => domain === d || domain.endsWith(`.${d}`));
+}
+
+// Online disposable lookup with simple cache
+const disposableCache = new Map<string, boolean>();
+
+async function isDisposableEmailOnline(email: string): Promise<boolean> {
+  const domain = (email.split("@")[1] || "").toLowerCase();
+  if (!domain) return false;
+  if (disposableCache.has(domain)) return disposableCache.get(domain)!;
+
+  const withTimeout = async (promise: Promise<Response>, ms = 2000) => {
+    return await Promise.race([
+      promise,
+      new Promise<Response>((_, reject) => setTimeout(() => reject(new Error("timeout")), ms)) as unknown as Promise<Response>,
+    ]);
+  };
+
+  // 1) Debounce.io (email-based)
+  try {
+    const res = await withTimeout(fetch(`https://disposable.debounce.io/?email=${encodeURIComponent(email)}`));
+    if (res.ok) {
+      const data = await res.json() as { disposable?: string };
+      if (typeof data.disposable === "string") {
+        const isDisp = data.disposable === "true";
+        disposableCache.set(domain, isDisp);
+        if (isDisp) return true;
+      }
+    }
+  } catch (e) {
+    // ignore network errors for optional disposable check
+  }
+
+  // 2) Kickbox open API (domain-based)
+  try {
+    const res2 = await withTimeout(fetch(`https://open.kickbox.com/v1/disposable/${encodeURIComponent(domain)}`));
+    if (res2.ok) {
+      const data2 = await res2.json() as { disposable?: boolean };
+      if (typeof data2.disposable === "boolean") {
+        disposableCache.set(domain, data2.disposable);
+        return data2.disposable;
+      }
+    }
+  } catch (e) {
+    // ignore network errors for optional disposable check
+  }
+
+  return false;
+}
+
+// Form Schema (all required)
 const formSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  name: z
+    .string({ required_error: "Name is required." })
+    .min(2, { message: "Name must be at least 2 characters." }),
+  email: z
+    .string({ required_error: "Email is required." })
+    .email({ message: "Please enter a valid email address (name@domain.com)." })
+    .refine((e) => e.toLowerCase().endsWith('.com'), {
+      message: "Only .com email addresses are accepted.",
+    })
+    .refine((e) => !isDisposableEmail(e), {
+      message: "Disposable/temporary emails are not allowed.",
+    }),
+  message: z
+    .string({ required_error: "Message is required." })
+    .min(10, { message: "Message must be at least 10 characters." }),
 });
 
 const ContactSection = () => {
@@ -41,6 +121,23 @@ const ContactSection = () => {
 
   // Function to handle form submission and API call
   async function onSubmit(values: z.infer<typeof formSchema>) {
+    // Hard runtime check to block disposable emails even if schema is bypassed
+    if (isDisposableEmail(values.email)) {
+      toast.error("Disposable Email Blocked", {
+        description: "Please use a permanent email address (no temporary/disposable providers).",
+        id: "contact-form-status",
+      });
+      return;
+    }
+    // Online verification for rotating/temp domains
+    const onlineDisposable = await isDisposableEmailOnline(values.email);
+    if (onlineDisposable) {
+      toast.error("Disposable Email Blocked", {
+        description: "This email appears to be temporary. Use a permanent address.",
+        id: "contact-form-status",
+      });
+      return;
+    }
     toast.info("Sending message...", { description: "Please wait while your message is transmitted.", id: "contact-form-status", duration: 10000 });
 
     try {
@@ -151,6 +248,8 @@ const ContactSection = () => {
                                 placeholder="Your full name" 
                                 {...field} 
                                 disabled={isSubmitting} 
+                                required
+                                autoComplete="name"
                                 className={darkInputClasses}
                               />
                             </FormControl>
@@ -170,6 +269,10 @@ const ContactSection = () => {
                                 placeholder="your@email.com" 
                                 {...field} 
                                 disabled={isSubmitting} 
+                                inputMode="email"
+                                pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.com$"
+                                required
+                                autoComplete="email"
                                 className={darkInputClasses}
                               />
                             </FormControl>
@@ -191,6 +294,7 @@ const ContactSection = () => {
                               className={`min-h-[120px] ${darkInputClasses}`}
                               {...field}
                               disabled={isSubmitting}
+                              required
                             />
                           </FormControl>
                           <FormMessage />
