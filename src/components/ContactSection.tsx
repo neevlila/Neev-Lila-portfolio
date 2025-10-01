@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, MapPin, Clock, Send, Loader2 } from 'lucide-react'; 
+import { Mail, MapPin, Clock, Send, Loader2 } from 'lucide-react';
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,7 +10,6 @@ import {
   FormField,
   FormItem,
   FormLabel,
-  FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -18,8 +17,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { toast } from '@/components/ui/sonner';
 
 // --- Web3Forms Configuration ---
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FROMS_ACCESS_KEY";
-const RECIPIENT_EMAIL = "YOUR_EMAIL";
+const WEB3FORMS_ACCESS_KEY = "f5447994-b4cb-49b8-8f93-5d25ae14855f";
+const RECIPIENT_EMAIL = "nneev223@gmail.com";
 // -------------------------------
 
 // Disposable email guard
@@ -90,17 +89,12 @@ async function isDisposableEmailOnline(email: string): Promise<boolean> {
   return false;
 }
 
-// Form Schema (all required)
+// Form Schema (all required) -- removed restrictive ".com only" refine to avoid extra native errors
 const formSchema = z.object({
   name: z
-    .string({ required_error: "Name is required." })
-    .min(2, { message: "Name must be at least 2 characters." }),
+    .string({ required_error: "Name is required." }),
   email: z
     .string({ required_error: "Email is required." })
-    .email({ message: "Please enter a valid email address (name@domain.com)." })
-    .refine((e) => e.toLowerCase().endsWith('.com'), {
-      message: "Only .com email addresses are accepted.",
-    })
     .refine((e) => !isDisposableEmail(e), {
       message: "Disposable/temporary emails are not allowed.",
     }),
@@ -186,9 +180,15 @@ const ContactSection = () => {
     { icon: Clock, label: "Available", value: "Monday - Friday" },
   ];
 
-  const { isSubmitting } = form.formState;
+  const { isSubmitting, errors, isSubmitted, touchedFields } = form.formState as any;
 
-  const darkInputClasses = "bg-background text-foreground focus-visible:ring-primary focus-visible:border-primary border-border";
+  const darkInputClasses = "bg-background text-foreground focus-visible:ring-primary focus-visible:border-primary";
+  const errorInputClasses = "border-destructive ring-1 ring-destructive";
+  const normalBorder = "border-border";
+
+  const shouldShowError = (field: string) => {
+    return !!errors[field] && (isSubmitted || touchedFields?.[field]);
+  };
 
   return (
     <section id="contact" className="py-20 lg:py-32 bg-background">
@@ -234,6 +234,7 @@ const ContactSection = () => {
               </CardHeader>
               <CardContent>
                 <Form {...form}>
+                  {/* enable native validation tooltips by removing noValidate and adding required */}
                   <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
                     <div className="grid sm:grid-cols-2 gap-6">
                       <FormField
@@ -243,17 +244,21 @@ const ContactSection = () => {
                           <FormItem>
                             <FormLabel>Name</FormLabel>
                             <FormControl>
-                              {/* --- FIX APPLIED HERE --- */}
-                              <Input 
-                                placeholder="Your full name" 
-                                {...field} 
-                                disabled={isSubmitting} 
-                                required
+                              <Input
+                                placeholder="Your full name"
+                                {...field}
+                                disabled={isSubmitting}
                                 autoComplete="name"
-                                className={darkInputClasses}
+                                aria-invalid={!!errors.name}
+                                required
+                                className={`${darkInputClasses} ${shouldShowError("name") ? errorInputClasses : normalBorder}`}
                               />
                             </FormControl>
-                            <FormMessage />
+                            {shouldShowError("name") && (
+                              <p role="alert" className="text-white text-sm mt-1">
+                                {errors.name?.message}
+                              </p>
+                            )}
                           </FormItem>
                         )}
                       />
@@ -264,19 +269,23 @@ const ContactSection = () => {
                           <FormItem>
                             <FormLabel>Email</FormLabel>
                             <FormControl>
-                              {/* --- FIX APPLIED HERE --- */}
-                              <Input 
-                                placeholder="your@email.com" 
-                                {...field} 
-                                disabled={isSubmitting} 
+                              <Input
+                                type="email"
+                                placeholder="your@email.com"
+                                {...field}
+                                disabled={isSubmitting}
                                 inputMode="email"
-                                pattern="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.com$"
-                                required
                                 autoComplete="email"
-                                className={darkInputClasses}
+                                aria-invalid={!!errors.email}
+                                required
+                                className={`${darkInputClasses} ${shouldShowError("email") ? errorInputClasses : normalBorder}`}
                               />
                             </FormControl>
-                            <FormMessage />
+                            {shouldShowError("email") && (
+                              <p role="alert" className="text-white text-sm mt-1">
+                                {errors.email?.message}
+                              </p>
+                            )}
                           </FormItem>
                         )}
                       />
@@ -288,23 +297,27 @@ const ContactSection = () => {
                         <FormItem>
                           <FormLabel>Message</FormLabel>
                           <FormControl>
-                            {/* --- FIX APPLIED HERE --- */}
                             <Textarea
                               placeholder="Tell me about your project or just say hello..."
-                              className={`min-h-[120px] ${darkInputClasses}`}
+                              className={`min-h-[120px] ${darkInputClasses} ${shouldShowError("message") ? errorInputClasses : normalBorder}`}
                               {...field}
                               disabled={isSubmitting}
+                              aria-invalid={!!errors.message}
                               required
                             />
                           </FormControl>
-                          <FormMessage />
+                          {shouldShowError("message") && (
+                            <p role="alert" className="text-white text-sm mt-1">
+                              {errors.message?.message || errors.message}
+                            </p>
+                          )}
                         </FormItem>
                       )}
                     />
-                    <Button 
-                      type="submit" 
-                      size="lg" 
-                      className="w-full" 
+                    <Button
+                      type="submit"
+                      size="lg"
+                      className="w-full"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
