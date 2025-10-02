@@ -105,6 +105,16 @@ cd Neev-Lila-portfolio
 
 # 2. Install dependencies
 npm install
+# or
+# yarn install
+# pnpm install
 
-# 3. Run in Devlopment mode
+# 3. Run in development mode
 npm run dev
+# or
+# yarn dev
+# pnpm dev
+
+# 4. Build for production
+npm run build
+npm start
