@@ -84,7 +84,7 @@ Designed for **clarity, performance, and interactivity** — with smooth animati
 
 | Home | Skills | Projects | Certifications |
 |------|--------|----------|----------------|
-| ![Home](assets/screenshots/home.png) | ![Skills](assets/screenshots/skills.png) | ![Projects](assets/screenshots/projects.png) | ![Certs](assets/screenshots/certs.png) |
+| ![Home](assets/home.png) | ![Skills](assets/skills.png) | ![Projects](assets/projects.png) | ![Certs](assets/certs.png) |
 
 > 📌 Update these screenshot paths once added to your repo.
 
