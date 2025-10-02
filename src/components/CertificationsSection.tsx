@@ -19,7 +19,7 @@ const CertificationsSection = () => {
       title: "OpenUSD: Using Attributes",
       issuer: "NVIDIA",
       logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=NVIDIA&w=48&h=48",
-      credentialUrl: "https://learn.nvidia.com/certificates?id=WUulj3U2SiOMgveVHSbk5w#",
+      credentialUrl: "https://learn.nvidia.com/certificates?id=WUulj3U2SiOMgveVHSbk5w",
     },
     {
       title: "Prompt Engineering",

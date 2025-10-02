@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 const SkillsSection = () => {
   const skillCategories = [
     {
-      category: "Skills",
+      category: "Technical Skills",
       icon: Code,
       items: [
         "Prompt Engineering",
@@ -13,6 +13,7 @@ const SkillsSection = () => {
         "HTML",
         "CSS",
         "JavaScript",
+        "MongoDB",
         "AI-Augmented Development",
         "Rapid Prototyping"
       ]
@@ -36,6 +37,7 @@ const SkillsSection = () => {
         "VS Code",
         "Git & GitHub",
         "Vercel",
+        "Netlify",
         "Generative AI Tools"
       ]
     },

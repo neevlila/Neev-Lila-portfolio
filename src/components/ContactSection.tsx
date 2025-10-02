@@ -16,24 +16,15 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from '@/components/ui/sonner';
 
-// --- Web3Forms Configuration ---
-const WEB3FORMS_ACCESS_KEY = "f5447994-b4cb-49b8-8f93-5d25ae14855f";
-const RECIPIENT_EMAIL = "nneev223@gmail.com";
-// -------------------------------
+const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
+const RECIPIENT_EMAIL = "YOUR_GMAIL";
 
-// Disposable email guard
 const DISPOSABLE_DOMAINS = [
-  // Mailinator family
   "mailinator.com", "mailinator.net", "mailinator.org", "mailinator.co",
-  // Yopmail family
   "yopmail.com", "yopmail.fr", "yopmail.net", "cool.fr.nf", "jetable.fr.nf", "nospam.ze.tc", "nomail.xl.cx",
-  // Guerrilla Mail
   "sharklasers.com", "guerrillamail.com", "guerrillamail.de", "guerrillamail.info", "guerrillamail.net", "guerrillamail.org",
-  // 10 minute mail
   "10minutemail.com", "10minutemail.net", "10minutesemail.net",
-  // Temp-mail
   "temp-mail.org", "tempmail.org", "tempmail.com", "tempmail.net", "mytemp.email",
-  // Other common providers
   "trashmail.com", "trashmail.de", "dispostable.com", "getnada.com", "inboxbear.com", "throwawaymail.com", "fakemail.net",
 ];
 
@@ -42,7 +33,6 @@ function isDisposableEmail(email: string) {
   return DISPOSABLE_DOMAINS.some((d) => domain === d || domain.endsWith(`.${d}`));
 }
 
-// Online disposable lookup with simple cache
 const disposableCache = new Map<string, boolean>();
 
 async function isDisposableEmailOnline(email: string): Promise<boolean> {
@@ -57,7 +47,6 @@ async function isDisposableEmailOnline(email: string): Promise<boolean> {
     ]);
   };
 
-  // 1) Debounce.io (email-based)
   try {
     const res = await withTimeout(fetch(`https://disposable.debounce.io/?email=${encodeURIComponent(email)}`));
     if (res.ok) {
@@ -68,11 +57,8 @@ async function isDisposableEmailOnline(email: string): Promise<boolean> {
         if (isDisp) return true;
       }
     }
-  } catch (e) {
-    // ignore network errors for optional disposable check
-  }
+  } catch (e) {}
 
-  // 2) Kickbox open API (domain-based)
   try {
     const res2 = await withTimeout(fetch(`https://open.kickbox.com/v1/disposable/${encodeURIComponent(domain)}`));
     if (res2.ok) {
@@ -82,14 +68,11 @@ async function isDisposableEmailOnline(email: string): Promise<boolean> {
         return data2.disposable;
       }
     }
-  } catch (e) {
-    // ignore network errors for optional disposable check
-  }
+  } catch (e) {}
 
   return false;
 }
 
-// Form Schema (all required) -- removed restrictive ".com only" refine to avoid extra native errors
 const formSchema = z.object({
   name: z
     .string({ required_error: "Name is required." }),
@@ -113,9 +96,23 @@ const ContactSection = () => {
     },
   });
 
-  // Function to handle form submission and API call
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    // Hard runtime check to block disposable emails even if schema is bypassed
+    const msg = (values.message || "").trim();
+    const charCount = msg.length;
+    const wordCount = msg === "" ? 0 : msg.split(/\s+/).filter(Boolean).length;
+
+    if (charCount < 10) {
+      window.alert("Message must be at least 10 characters. Please type more before sending.");
+      form.setFocus("message");
+      return;
+    }
+
+    if (wordCount < 10) {
+      window.alert("Please enter at least 10 words in the message.");
+      form.setFocus("message");
+      return;
+    }
+
     if (isDisposableEmail(values.email)) {
       toast.error("Disposable Email Blocked", {
         description: "Please use a permanent email address (no temporary/disposable providers).",
@@ -123,7 +120,7 @@ const ContactSection = () => {
       });
       return;
     }
-    // Online verification for rotating/temp domains
+
     const onlineDisposable = await isDisposableEmailOnline(values.email);
     if (onlineDisposable) {
       toast.error("Disposable Email Blocked", {
@@ -186,8 +183,9 @@ const ContactSection = () => {
   const errorInputClasses = "border-destructive ring-1 ring-destructive";
   const normalBorder = "border-border";
 
-  const shouldShowError = (field: string) => {
-    return !!errors[field] && (isSubmitted || touchedFields?.[field]);
+  const shouldShowError = (field: "name" | "message" | "email") => {
+    const val = String(form.getValues(field) ?? "");
+    return !!errors[field] && (isSubmitted || (touchedFields?.[field] && val !== ""));
   };
 
   return (
@@ -304,6 +302,28 @@ const ContactSection = () => {
                               disabled={isSubmitting}
                               aria-invalid={!!errors.message}
                               required
+                              minLength={10}
+                              onInvalid={(e: any) => {
+                                const el = e.currentTarget as HTMLTextAreaElement;
+                                const val = (el.value || "").trim();
+                                const wordCount = val === "" ? 0 : val.split(/\s+/).filter(Boolean).length;
+                                if (wordCount < 10) {
+                                  el.setCustomValidity("Please enter at least 10 words in the message.");
+                                } else if (val.length < 10) {
+                                  el.setCustomValidity("Please enter at least 10 characters in the message.");
+                                } else {
+                                  el.setCustomValidity("");
+                                }
+                              }}
+                              onInput={(e: any) => {
+                                (e.currentTarget as HTMLTextAreaElement).setCustomValidity("");
+                              }}
+                              onFocus={(e: any) => {
+                                (e.currentTarget as HTMLTextAreaElement).setCustomValidity("");
+                              }}
+                              onMouseEnter={(e: any) => {
+                                (e.currentTarget as HTMLTextAreaElement).setCustomValidity("");
+                              }}
                             />
                           </FormControl>
                           {shouldShowError("message") && (
