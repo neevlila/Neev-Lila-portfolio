@@ -32,7 +32,7 @@ const SkillsSection = () => {
       icon: Wrench,
       items: [
         "Google Gemini",
-        "ChatGPT",
+        "Docker",
         "GitHub Copilot",
         "VS Code",
         "Git & GitHub",

@@ -16,8 +16,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { toast } from '@/components/ui/sonner';
 
-const WEB3FORMS_ACCESS_KEY = "YOUR_WEB3FORMS_ACCESS_KEY";
-const RECIPIENT_EMAIL = "YOUR_GMAIL";
+const WEB3FORMS_ACCESS_KEY = "f5447994-b4cb-49b8-8f93-5d25ae14855f";
+const RECIPIENT_EMAIL = "nneev223@gmail.com";
 
 const DISPOSABLE_DOMAINS = [
   "mailinator.com", "mailinator.net", "mailinator.org", "mailinator.co",
