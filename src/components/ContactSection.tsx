@@ -107,12 +107,6 @@ const ContactSection = () => {
       return;
     }
 
-    if (wordCount < 10) {
-      window.alert("Please enter at least 10 words in the message.");
-      form.setFocus("message");
-      return;
-    }
-
     if (isDisposableEmail(values.email)) {
       toast.error("Disposable Email Blocked", {
         description: "Please use a permanent email address (no temporary/disposable providers).",

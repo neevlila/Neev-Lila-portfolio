@@ -11,7 +11,7 @@ const ProjectsSection = () => {
       subtitle: "Generative AI Chatbot",
       description: "A legal guidance chatbot built on the Google Gemini API to streamline legal queries. It provides accessible, up-to-date information, demonstrating expertise in Generative AI and Rapid Prototyping.",
       techStack: ["React", "TypeScript", "Tailwind CSS", "Google Gemini API", "Generative AI Tools"],
-      liveLink: "https://law-bot.netlify.app/",
+      liveLink: "https://lawbot-teal.vercel.app/",
       sourceLink: "https://github.com/neevlila/Lawbot",
     },
     {
