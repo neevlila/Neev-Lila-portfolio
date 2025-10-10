@@ -16,6 +16,12 @@ const CertificationsSection = () => {
       credentialUrl: "https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gMTdCXwDdLYoXZ3wG_ifobHAoMjQs9s6bKS_68d57892e8c126991b15d05a_1758830408377_completion_certificate.pdf",
     },
     {
+      title: "n8n - No Code AI Agent Builder",
+      issuer: "Simplelearn",
+      logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=SIMPL&w=48&h=48",
+      credentialUrl: "https://certificates.simplicdn.net/share/9137360_94957271760069546686.png",
+    },
+    {
       title: "OpenUSD: Using Attributes",
       issuer: "NVIDIA",
       logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=NVIDIA&w=48&h=48",
