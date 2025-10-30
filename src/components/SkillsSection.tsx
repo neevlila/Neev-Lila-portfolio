@@ -13,7 +13,6 @@ const SkillsSection = () => {
         "HTML",
         "CSS",
         "JavaScript",
-        "MongoDB",
         "AI-Augmented Development",
         "Rapid Prototyping"
       ]
@@ -23,8 +22,9 @@ const SkillsSection = () => {
       icon: Bug,
       items: [
         "Software Testing",
-        "Quality Assurance",
+        "Quality Control",
         "Quality analysis",
+        "Manual Testing"
       ]
     },
     {
@@ -34,7 +34,6 @@ const SkillsSection = () => {
         "Google Gemini",
         "Docker",
         "GitHub Copilot",
-        "VS Code",
         "Git & GitHub",
         "Vercel",
         "Netlify",
