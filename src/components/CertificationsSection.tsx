@@ -34,10 +34,10 @@ const CertificationsSection = () => {
       credentialUrl: "https://www.cloudskillsboost.google/public_profiles/11b5e5d0-f446-4102-b7e0-6e9570fb292f/badges/18623811",
     },
     {
-      title: "Integrating Applications with Gemini 1.0 Pro on Google Cloud",
-      issuer: "Google Cloud Skills Boost",
-      logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=GCP&w=48&h=48",
-      credentialUrl: "https://www.cloudskillsboost.google/public_profiles/11b5e5d0-f446-4102-b7e0-6e9570fb292f/badges/18701154",
+      title: "Cyber Security",
+      issuer: "Deloitte (Forage)",
+      logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=DELOITTE&w=48&h=48",
+      credentialUrl: "mSxAf6zZTseP_68d6c37f7ede33c1018bd655_1760721809188_completion_certificate.pdf",
     },
   ];
 
