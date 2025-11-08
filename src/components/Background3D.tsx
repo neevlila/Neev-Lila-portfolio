@@ -66,7 +66,7 @@ const Particles = ({ count = 1000 }) => {
 const Background3D = () => {
   const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
   const particleCount = isMobile ? 300 : 1000;
-  const dpr = isMobile ? [1, 1.5] : undefined; // cap DPR on mobile for performance/visibility
+  const dpr = isMobile ? [1, 1.5] : undefined;
 
   return (
     <Canvas

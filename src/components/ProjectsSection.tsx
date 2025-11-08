@@ -20,7 +20,7 @@ const ProjectsSection = () => {
       description: "A comprehensive timetabling application designed to help educational institutions manage schedules efficiently. Features automated conflict resolution and a user-friendly interface.",
       techStack: ["React", "TypeScript", "Tailwind CSS", "Appwrite"],
       liveLink: "https://eduscheduler-ten.vercel.app/",
-      sourceLink: "#",
+      sourceLink: "https://github.com/neevlila/Lawbot/",
     },
   ];
 
