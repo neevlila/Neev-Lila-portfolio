@@ -4,10 +4,10 @@ import { ArrowUpRight } from 'lucide-react';
 const CertificationsSection = () => {
   const certifications = [
     {
-      title: "Cybersecurity Analyst",
-      issuer: "Tata Insights and Quants (Forage)",
-      logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=TATA&w=48&h=48",
-      credentialUrl: "https://www.theforage.com/completion-certificates/ifobHAoMjQs9s6bKS/gmf3ypEXBj2wvfQWC_ifobHAoMjQs9s6bKS_68d57892e8c126991b15d05a_1758882308684_completion_certificate.pdf",
+      title: "Cyber Security",
+      issuer: "Deloitte (Forage)",
+      logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=DELOITTE&w=48&h=48",
+      credentialUrl: "https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/E9pA6qsdbeyEkp3ti_9PBTqmSxAf6zZTseP_68d6c37f7ede33c1018bd655_1760721809188_completion_certificate.pdf",
     },
     {
       title: "GenAI Powered Data Analytics",
@@ -32,12 +32,6 @@ const CertificationsSection = () => {
       issuer: "Google Cloud Skills Boost",
       logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=GCP&w=48&h=48",
       credentialUrl: "https://www.cloudskillsboost.google/public_profiles/11b5e5d0-f446-4102-b7e0-6e9570fb292f/badges/18623811",
-    },
-    {
-      title: "Cyber Security",
-      issuer: "Deloitte (Forage)",
-      logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=DELOITTE&w=48&h=48",
-      credentialUrl: "mSxAf6zZTseP_68d6c37f7ede33c1018bd655_1760721809188_completion_certificate.pdf",
     },
   ];
 
