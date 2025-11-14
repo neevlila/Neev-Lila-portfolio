@@ -15,12 +15,12 @@ const ProjectsSection = () => {
       sourceLink: "https://github.com/neevlila/Lawbot",
     },
     {
-      title: "EduScheduler",
-      subtitle: "Academic Timetabling Solution",
-      description: "A comprehensive timetabling application designed to help educational institutions manage schedules efficiently. Features automated conflict resolution and a user-friendly interface.",
-      techStack: ["React", "TypeScript", "Tailwind CSS", "Appwrite"],
-      liveLink: "https://eduscheduler-ten.vercel.app/",
-      sourceLink: "https://github.com/neevlila/Lawbot/",
+      title: "Krishi Mitra",
+      subtitle: "Farmer Advisory and Disease Detection",
+      description: "A practical platform that offers AI-generated crop advisory, image-based disease detection, live weather insights, and a simple market linkage system to help farmers make informed decisions.",
+      techStack: ["React", "Vite", "Tailwind CSS", "Supabase", "Gemini API", "Weather API", "Google OAuth"],
+      liveLink: "https://krishi-miitra.vercel.app/",
+      sourceLink: "https://github.com/neevlila/krishi-mitra",
     },
   ];
 
