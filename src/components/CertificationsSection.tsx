@@ -33,6 +33,12 @@ const CertificationsSection = () => {
       logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=GCP&w=48&h=48",
       credentialUrl: "https://www.cloudskillsboost.google/public_profiles/11b5e5d0-f446-4102-b7e0-6e9570fb292f/badges/18623811",
     },
+    {
+      title: "Explore AI for All",
+      issuer: "Microsoft",
+      logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=MICROSOFT&w=48&h=48",
+      credentialUrl: "https://learn.microsoft.com/api/achievements/share/en-us/NeevLila-7043/KCG7NP6B?sharingId=1C369FF35C8C562C",
+    },
   ];
 
   return (
