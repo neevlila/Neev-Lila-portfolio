@@ -45,6 +45,12 @@ const CertificationsSection = () => {
       logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=MICROSOFT&w=48&h=48",
       credentialUrl: "https://learn.microsoft.com/api/achievements/share/en-us/NeevLila-7043/KCG7NP6B?sharingId=1C369FF35C8C562C",
     },
+    {
+      title: "Google Gemini",
+      issuer: "Google",
+      logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=GOOGLE&w=48&h=48",
+      credentialUrl: "https://edu.exceedlms.com/student/award/MDUbWqtzaNBgM27eAawpk2q2",
+    },
   ];
 
   return (
