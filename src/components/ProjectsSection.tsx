@@ -22,6 +22,13 @@ const ProjectsSection = () => {
       liveLink: "https://krishi-miitra.vercel.app/",
       sourceLink: "https://github.com/neevlila/krishi-mitra",
     },
+    {
+      title: "Real-time Message Classification and Filtering",
+      description: "An intelligent security tool that uses Natural Language Processing (NLP) to classify SMS messages as 'Ham' or 'Spam', protecting users from phishing and unsolicited marketing through automated text analysis.",
+      techStack: ["Python", "NLTK", "Scikit-Learn", "Pandas", "Streamlit", "Pickle"],
+      liveLink: "https://ai-based-sms-spam-detection.onrender.com/",
+      sourceLink: "https://github.com/neevlila/AI-Based-SMS-Spam-Detection",
+    },
   ];
 
   return (
