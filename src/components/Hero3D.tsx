@@ -2,8 +2,19 @@ import React, { lazy, Suspense } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-// Three.js + react-three-fiber are large — split into own chunk, load after hero paint
-const Background3D = lazy(() => import('./Background3D'));
+// Check once at module evaluation time — synchronous, no flicker
+// matchMedia is more reliable than innerWidth for device detection
+const isMobile =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(max-width: 768px)').matches;
+
+// CRITICAL: Only call lazy() on non-mobile.
+// On mobile the factory `() => import('./Background3D')` is never registered,
+// so Vite's runtime never fires the network request for the Three.js chunk.
+// This eliminates the 219.8 KiB / 1,042 ms CPU cost on mobile completely.
+const Background3D = !isMobile
+  ? lazy(() => import('./Background3D'))
+  : null;
 
 const Hero3D = () => {
   const scrollToAbout = () => {
@@ -13,9 +24,12 @@ const Hero3D = () => {
 
   return (
     <section id="home" aria-label="Introduction" className="relative h-screen flex items-center justify-center overflow-hidden bg-background text-center">
-      <Suspense fallback={null}>
-        <Background3D />
-      </Suspense>
+      {/* Only render the WebGL canvas on desktop — too expensive for mobile CPUs */}
+      {Background3D && (
+        <Suspense fallback={null}>
+          <Background3D />
+        </Suspense>
+      )}
 
       <div className="relative z-10 px-6 max-w-4xl">
         <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-fade-in">
@@ -43,7 +57,7 @@ const Hero3D = () => {
         <span className="text-sm font-mono text-muted-foreground tracking-widest uppercase">
           Scroll to explore
         </span>
-        <ChevronDown className="h-6 w-6 text-muted-foreground animate-bounce" />
+        <ChevronDown className="h-6 w-6 text-muted-foreground animate-bounce" aria-hidden="true" />
       </div>
     </section>
   );
