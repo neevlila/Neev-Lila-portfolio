@@ -35,10 +35,11 @@ const Footer = () => {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Visit Neev Lila on ${link.title}`}
               className="text-muted-foreground hover:text-primary transition-colors"
               title={link.title}
             >
-              <link.icon size={24} />
+              <link.icon size={24} aria-hidden="true" />
             </a>
           ))}
         </div>

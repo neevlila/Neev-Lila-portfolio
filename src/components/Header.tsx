@@ -32,7 +32,8 @@ const Header = () => {
             {navLinks.map(link => (
               <button 
                 key={link.id}
-                onClick={() => scrollToSection(link.id)} 
+                onClick={() => scrollToSection(link.id)}
+                aria-label={`Navigate to ${link.label} section`}
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.label}
@@ -56,7 +57,8 @@ const Header = () => {
             {navLinks.map(link => (
                <button 
                 key={link.id}
-                onClick={() => scrollToSection(link.id)} 
+                onClick={() => scrollToSection(link.id)}
+                aria-label={`Navigate to ${link.label} section`}
                 className="block text-muted-foreground hover:text-primary transition-colors"
               >
                 {link.label}

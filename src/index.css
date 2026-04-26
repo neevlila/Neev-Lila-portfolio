@@ -13,7 +13,7 @@
     --popover: 224 71.4% 4.1%;
     --popover-foreground: 210 20% 98%;
 
-    --primary: 217.2 91.2% 59.8%; /* blue-500 */
+    --primary: 217.2 91.2% 50%; /* blue — darkened from 59.8% to hit WCAG 4.5:1 with white text */
     --primary-foreground: 0 0% 100%; /* pure white — ensures 4.5:1 ratio on blue-500 */
 
     --secondary: 220 13% 18%; /* slate-800 */
@@ -30,7 +30,7 @@
 
     --border: 220 13% 22%; /* slate-700 */
     --input: 220 13% 22%;
-    --ring: 217.2 91.2% 59.8%;
+    --ring: 217.2 91.2% 50%;
 
     --radius: 0.5rem;
   }
@@ -45,7 +45,7 @@
     --popover: 224 71.4% 4.1%;
     --popover-foreground: 210 20% 98%;
 
-    --primary: 217.2 91.2% 59.8%;
+    --primary: 217.2 91.2% 50%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 220 13% 18%;
@@ -62,7 +62,7 @@
 
     --border: 220 13% 22%;
     --input: 220 13% 22%;
-    --ring: 217.2 91.2% 59.8%;
+    --ring: 217.2 91.2% 50%;
   }
 }
 
