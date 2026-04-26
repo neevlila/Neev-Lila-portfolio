@@ -51,10 +51,16 @@ const CertificationsSection = () => {
       logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=GOOGLE&w=48&h=48",
       credentialUrl: "https://edu.exceedlms.com/student/award/MDUbWqtzaNBgM27eAawpk2q2",
     },
+    {
+      title: "AI Fluency For Students",
+      issuer: "Anthropic",
+      logoUrl: "https://img-wrapper.vercel.app/image?url=https://placehold.co/48x48/1e293b/ffffff?text=ANTHROPIC&w=48&h=48",
+      credentialUrl: "https://verify.skilljar.com/c/wh7hqydn5j82",
+    },
   ];
 
   return (
-    <section id="certifications" className="py-16 lg:py-24 bg-secondary">
+    <section id="certifications" aria-label="Certifications and Badges" className="py-16 lg:py-24 bg-secondary">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
@@ -80,6 +86,8 @@ const CertificationsSection = () => {
               <img 
                 src={cert.logoUrl} 
                 alt={`${cert.issuer} logo`} 
+                width="48"
+                height="48"
                 className="w-10 h-10 rounded-md bg-gray-700 object-contain"
               />
 

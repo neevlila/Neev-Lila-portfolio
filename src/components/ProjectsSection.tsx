@@ -7,32 +7,25 @@ import { ArrowUpRight } from 'lucide-react';
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "AI Legal Assistant (Built for Smart India Hackathon 2025)",
-      subtitle: "Generative AI Chatbot",
-      description: "A legal guidance chatbot built on the Google Gemini API to streamline legal queries. It provides accessible, up-to-date information, demonstrating expertise in Generative AI and Rapid Prototyping.",
-      techStack: ["React", "TypeScript", "Tailwind CSS", "Google Gemini API", "Generative AI Tools"],
+      title: "Lawbot — AI Legal Assistant",
+      subtitle: "Smart India Hackathon 2025 · React + Gemini API",
+      description: "The core challenge: Gemini's default behavior hallucinates case law when asked legal questions. Solved by engineering a strict system prompt that instructs the model to cite general legal principles and explicitly flag uncertainty rather than fabricating citations. Frontend is React + TypeScript + Tailwind CSS; API calls run through a client-side service layer with response streaming for perceived speed. Deployed on Vercel with sub-2s cold start.",
+      techStack: ["React", "TypeScript", "Tailwind CSS", "Google Gemini API", "Vercel"],
       liveLink: "https://lawbot-teal.vercel.app/",
       sourceLink: "https://github.com/neevlila/Lawbot",
     },
     {
-      title: "Krishi Mitra",
-      subtitle: "Farmer Advisory and Disease Detection",
-      description: "A practical platform that offers AI-generated crop advisory, image-based disease detection, live weather insights, and a simple market linkage system to help farmers make informed decisions.",
-      techStack: ["React", "Vite", "Tailwind CSS", "Supabase", "Gemini API", "Weather API", "Google OAuth"],
-      liveLink: "https://krishi-miitra.vercel.app/",
-      sourceLink: "https://github.com/neevlila/krishi-mitra",
-    },
-    {
-      title: "Real-time Message Classification and Filtering",
-      description: "An intelligent security tool that uses Natural Language Processing (NLP) to classify SMS messages as 'Ham' or 'Spam', protecting users from phishing and unsolicited marketing through automated text analysis.",
-      techStack: ["Python", "NLTK", "Scikit-Learn", "Pandas", "Streamlit", "Pickle"],
+      title: "NLP SMS Spam Classifier",
+      subtitle: "Text Classification · Python + scikit-learn · Deployed on Render",
+      description: "Trained a TF-IDF + Multinomial Naive Bayes pipeline on the UCI SMS Spam Collection (5,574 messages). Hit 97.4% accuracy and 100% precision on spam — precision was prioritized to eliminate false positives (legitimate messages wrongly blocked). Preprocessing pipeline: NLTK tokenization → stop-word removal → Porter stemming → TF-IDF vectorization. Serialized with Pickle, served via a Streamlit UI, and continuously deployed on Render.",
+      techStack: ["Python", "NLTK", "scikit-learn", "TF-IDF", "Streamlit", "Render"],
       liveLink: "https://ai-based-sms-spam-detection.onrender.com/",
       sourceLink: "https://github.com/neevlila/AI-Based-SMS-Spam-Detection",
     },
   ];
 
   return (
-    <section id="projects" className="py-16 lg:py-24 bg-secondary">
+    <section id="projects" aria-label="Featured Projects" className="py-16 lg:py-24 bg-secondary">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">

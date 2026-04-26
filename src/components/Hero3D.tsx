@@ -10,7 +10,7 @@ const Hero3D = () => {
   };
 
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden bg-background text-center">
+    <section id="home" aria-label="Introduction" className="relative h-screen flex items-center justify-center overflow-hidden bg-background text-center">
       <Background3D />
 
       <div className="relative z-10 px-6 max-w-4xl">
@@ -18,17 +18,17 @@ const Hero3D = () => {
           Neev Lila
         </h1>
         <p className="text-xl md:text-2xl text-primary font-medium mb-8 animate-fade-in animation-delay-500">
-          AI-Augmented Developer | Generative AI & Rapid Prototyping Specialist | Quality Assurance & Testing
+          Frontend Developer &middot; AI Integration &middot; React, TypeScript &amp; Gemini API
         </p>
         <p className="text-lg md:text-xl mb-10 text-muted-foreground max-w-3xl mx-auto animate-fade-in animation-delay-1000">
-          I am an AI-Augmented Developer focused on creating intelligent solutions and ensuring their reliability.
+          I build responsive web interfaces with React and TypeScript, and integrate LLM&nbsp;APIs&nbsp;&mdash; primarily Google&nbsp;Gemini&nbsp;&mdash; to add real AI capability to products. Currently a B.Tech IT student, I&apos;ve shipped a legal chatbot for Smart India Hackathon 2025 and a live NLP&#8209;based SMS spam classifier.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in animation-delay-1500">
-          <Button size="lg" onClick={scrollToAbout}>
-            Discover More
+          <Button size="lg" onClick={scrollToAbout} id="hero-discover-btn">
+            View My Work
           </Button>
-          <Button size="lg" variant="outline" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
+          <Button size="lg" variant="outline" id="hero-contact-btn" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
             Get In Touch
           </Button>
         </div>

@@ -1,30 +1,31 @@
 import React from 'react';
-import { Code, Bug, Wrench } from 'lucide-react';
+import { Code, FlaskConical, Wrench } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const SkillsSection = () => {
   const skillCategories = [
     {
-      category: "Technical Skills",
+      category: "Frontend & Languages",
       icon: Code,
       items: [
-        "Prompt Engineering",
+        "React",
+        "TypeScript",
         "Python",
-        "HTML",
-        "CSS",
+        "Prompt Engineering",
+        "HTML & CSS",
         "JavaScript",
-        "AI-Augmented Development",
-        "Rapid Prototyping"
+        "Google Gemini API"
       ]
     },
     {
-      category: "Quality & Testing",
-      icon: Bug,
+      category: "ML & Data",
+      icon: FlaskConical,
       items: [
-        "Software Testing",
-        "Quality Control",
-        "Quality analysis",
-        "Manual Testing"
+        "NLP / Text Classification",
+        "scikit-learn",
+        "NLTK",
+        "TF-IDF Vectorization",
+        "Pandas"
       ]
     },
     {
@@ -43,14 +44,14 @@ const SkillsSection = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 lg:py-32 bg-background">
+    <section id="skills" aria-label="Skills" className="py-20 lg:py-32 bg-background">
       <div className="container mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Skills
           </h2>
           <p className="text-lg text-muted-foreground">
-            A blend of AI integration, rapid prototyping, and a strong commitment to quality to build innovative and reliable applications.
+            React and TypeScript on the frontend. Python, scikit-learn, and NLTK for ML work. LLM integration via Google Gemini API. All connected with the tools below.
           </p>
         </div>
 
