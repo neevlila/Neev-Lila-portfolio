@@ -1,120 +1,107 @@
-<!-- PROJECT SHIELDS -->
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](#license)
-[![Vercel Deployment](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)](https://vercel.com)
-[![React](https://img.shields.io/badge/React-18-blue?logo=react)](https://react.dev/)
-[![Vite](https://img.shields.io/badge/Vite-7-purple?logo=vite)](https://vitejs.dev/)
-[![TailwindCSS](https://img.shields.io/badge/TailwindCSS-3-06B6D4?logo=tailwindcss)](https://tailwindcss.com/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+<div align="center">
+
+# 🚀 Neev Lila | Frontend & AI Engineer
+
+[![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fneevlila.vercel.app&up_message=Online&down_message=Offline&style=for-the-badge&logo=vercel)](https://neevlila.vercel.app)
+[![Lighthouse Performance](https://img.shields.io/badge/Lighthouse-100%2F100-success?style=for-the-badge&logo=lighthouse)](https://neevlila.vercel.app)
+[![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+
+An interactive, hyper-optimized developer portfolio showcasing production-grade frontend engineering, interactive WebGL, and seamless large language model (LLM) integrations.
+
+🔗 **[neevlila.vercel.app](https://neevlila.vercel.app)**  
+
+</div>
+
+<br />
+
+## 🌟 Overview
+
+Welcome to the source code of my personal portfolio! This project isn't just a static resume—it's a demonstration of modern web engineering best practices. 
+
+I built this site to bridge the gap between **gorgeous interactive design** (WebGL particle systems, glassmorphism) and **ruthless performance optimization** (100% Lighthouse scores, SEO structured data, code-splitting). 
+
+### 🎯 Key Highlights:
+- **AI-Driven Focus:** Showcases real-world deployments of the Google Gemini API, including an AI Legal Chatbot built for Smart India Hackathon 2025.
+- **Flawless Optimization:** Achieves a **100/100 Lighthouse score** across Performance, Accessibility, Best Practices, and SEO.
+- **Dynamic 3D Background:** Implements a custom WebGL particle engine using Three.js and React Three Fiber, perfectly balanced to avoid main-thread blocking.
 
 ---
 
-# 🌐 Neev Lila — Developer Portfolio
+## 🛠️ Tech Stack & Architecture
 
-Welcome to my **personal developer portfolio**.  
-This website showcases my **work, technical skills, tools, certifications, and contact information** with a modern, responsive design.
-
-🔗 **Live site:** [neevlila.vercel.app](https://neevlila.vercel.app)
-
----
-
-## 📘 Table of Contents
-
-1. [About](#about)
-2. [Features](#features)
-3. [Tech Stack](#tech-stack)
-4. [Screenshots](#screenshots)
-5. [Getting Started](#getting-started)
-6. [Project Structure](#project-structure)
-7. [Customization](#customization)
-8. [Deployment](#deployment)
-9. [Contributing](#contributing)
-10. [License](#license)
+| Category | Technologies |
+| :--- | :--- |
+| **Core** | React 18, TypeScript, Vite |
+| **Styling & UI** | Tailwind CSS, shadcn/ui, Radix UI |
+| **WebGL & 3D** | Three.js, React Three Fiber (`@react-three/fiber`) |
+| **Icons & Assets** | Lucide React |
+| **Deployment & CI/CD** | Vercel |
 
 ---
 
-## 🧐 About
+## ⚡ Performance Engineering
 
-This portfolio is built with **React, TypeScript, Vite, and TailwindCSS**, using **shadcn/ui** and **Radix UI** components for a sleek and accessible design.  
+This portfolio was explicitly engineered to pass rigorous web core vital standards. Key optimizations include:
 
-The goal is to highlight:  
-- 🚀 Technical skills and toolset  
-- 💼 Projects & case studies  
-- 🎓 Certifications  
-- 📬 Professional bio & contact info  
-
-Designed for **clarity, performance, and interactivity** — with smooth animations, hover effects, and a consistent theme.
+* **Dynamic Code Splitting:** The heavy `Three.js` payload (`~220KB`) is lazily loaded out of the critical rendering path. On mobile devices, the WebGL payload is completely halted to guarantee instant First Contentful Paint (FCP) on weak processors.
+* **WCAG Accessibility:** Strict adherence to Web Content Accessibility Guidelines. All text passes the 4.5:1 `AA` contrast ratio, and all interactive SVG icons utilize semantic `aria-label` screen-reader fallbacks.
+* **Search Engine Optimization (SEO):** Injects dynamic `JSON-LD` (Schema.org) structured data into the `<head>`, explicitly defining the `Person` entity for rich Google Search indexing.
+* **Network Graph Optimization:** Built with heavily cacheable direct vendor CDNs (AWS, Google, Nvidia) and strategic TCP `<link rel="preconnect">` tags to minimize connection latency.
 
 ---
 
-## ✨ Features
+## 📂 Project Structure
 
-- ⚡ Blazing fast with **Vite**
-- 🎨 Styled with **TailwindCSS** + **shadcn/ui**
-- 🌗 Dark mode support
-- 📊 Interactive charts (Recharts)
-- 🧩 Modular, reusable components
-- 🔔 Toast notifications with **sonner**
-- 🪄 Command palette (cmdk)
-- 🎡 Carousels with **Embla**
-- 🔐 Type-safe forms (React Hook Form + Zod)
-- 🔎 Data fetching & caching (TanStack Query)
-- 📱 Fully responsive & mobile-friendly
-- 🌍 Deployed on **Vercel**
-
----
-
-## 🛠 Tech Stack
-
-| Category            | Tools / Libraries |
-|---------------------|------------------|
-| **Framework**       | React 18 + TypeScript + Vite 7 |
-| **UI/Styling**      | TailwindCSS 3, shadcn/ui, Radix UI, tailwind-merge |
-| **Icons**           | lucide-react |
-| **State/Data**      | @tanstack/react-query, react-router-dom |
-| **Forms/Validation**| React Hook Form, Zod, @hookform/resolvers |
-| **Charts**          | Recharts |
-| **3D/Graphics**     | Three.js, react-three-fiber |
-| **UI Enhancements** | Embla Carousel, Sonner (toasts), Vaul (drawers), cmdk |
-| **Deployment**      | Vercel |
-| **Lint/Formatting** | ESLint, TypeScript ESLint |
-
----
-
-## 📸 Screenshots
-
-| Home | Skills | Projects | Certifications |
-|------|--------|----------|----------------|
-| ![Home](assets/home.png) | ![Skills](assets/skills.png) | ![Projects](assets/projects.png) | ![Certs](assets/certs.png) |
-
-> 📌 Update these screenshot paths once added to your repo.
+```text
+├── public/                 # Static assets and favicon
+├── src/
+│   ├── components/         # Reusable UI components (Hero, Skills, Projects, Footer)
+│   ├── components/ui/      # Base UI components (shadcn/ui primitives)
+│   ├── pages/              # Main view assemblies (Index.tsx)
+│   ├── index.css           # Global typography and Tailwind color variables
+│   └── main.tsx            # React hydration and application entry
+├── index.html              # HTML shell & SEO meta configuration
+├── tailwind.config.ts      # Tailwind design system configuration
+└── vite.config.ts          # Build optimization & chunking rules
+```
 
 ---
 
 ## 🚀 Getting Started
 
-### Prerequisites
-- Node.js 18+
-- npm, yarn, or pnpm
+Want to run this project locally to explore the architecture or WebGL setup? 
 
-### Installation
-
+### 1. Clone the Repository
 ```bash
-# 1. Clone the repo
 git clone https://github.com/neevlila/Neev-Lila-portfolio.git
 cd Neev-Lila-portfolio
+```
 
-# 2. Install dependencies
+### 2. Install Dependencies
+```bash
 npm install
-# or
-# yarn install
-# pnpm install
+```
 
-# 3. Run in development mode
+### 3. Spin up the Dev Server
+```bash
 npm run dev
-# or
-# yarn dev
-# pnpm dev
+```
+Open [http://localhost:5173](http://localhost:5173) in your browser to see the live application.
 
-# 4. Build for production
-npm run build
-npm start
+---
+
+## 🤝 Let's Connect!
+
+I am always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+
+* **Email:** [neevlila@gmail.com](mailto:neevlila@gmail.com)
+* **LinkedIn:** [linkedin.com/in/neevlila](https://linkedin.com/in/neevlila/)
+* **GitHub:** [github.com/neevlila](https://github.com/neevlila)
+
+<br />
+
+<div align="center">
+  <sub>Built with ❤️ by Neev Lila. Deployed on Vercel.</sub>
+</div>
