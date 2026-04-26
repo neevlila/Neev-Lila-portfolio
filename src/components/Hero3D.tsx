@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import Background3D from './Background3D';
+
+// Three.js + react-three-fiber are large — split into own chunk, load after hero paint
+const Background3D = lazy(() => import('./Background3D'));
 
 const Hero3D = () => {
   const scrollToAbout = () => {
@@ -11,7 +13,9 @@ const Hero3D = () => {
 
   return (
     <section id="home" aria-label="Introduction" className="relative h-screen flex items-center justify-center overflow-hidden bg-background text-center">
-      <Background3D />
+      <Suspense fallback={null}>
+        <Background3D />
+      </Suspense>
 
       <div className="relative z-10 px-6 max-w-4xl">
         <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-fade-in">

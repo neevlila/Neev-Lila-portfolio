@@ -2,7 +2,12 @@ import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
-const Particles = ({ count = 1000 }) => {
+// Respect user's OS-level "reduce motion" setting
+const prefersReducedMotion =
+  typeof window !== 'undefined' &&
+  window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const Particles = ({ count = 600 }) => {
   const mesh = useRef<THREE.Points>(null);
 
   const particles = useMemo(() => {
@@ -10,7 +15,8 @@ const Particles = ({ count = 1000 }) => {
     for (let i = 0; i < count; i++) {
       const time = Math.random() * 100;
       const factor = 20 + Math.random() * 100;
-      const speed = 0.01 + Math.random() / 200;
+      // Slower speed = fewer position updates needed per frame = less main-thread work
+      const speed = 0.004 + Math.random() / 400;
       const x = -50 + Math.random() * 100;
       const y = -50 + Math.random() * 100;
       const z = -50 + Math.random() * 100;
@@ -22,7 +28,8 @@ const Particles = ({ count = 1000 }) => {
   const positions = useMemo(() => new Float32Array(count * 3), [count]);
 
   useFrame(() => {
-    if (!mesh.current) return;
+    // Skip animation entirely if user prefers reduced motion
+    if (prefersReducedMotion || !mesh.current) return;
 
     particles.forEach((particle, i) => {
       let { factor, speed, x, y, z } = particle;
@@ -64,15 +71,20 @@ const Particles = ({ count = 1000 }) => {
 };
 
 const Background3D = () => {
+  // If user prefers reduced motion, render nothing at all
+  if (prefersReducedMotion) return null;
+
   const isMobile = typeof window !== 'undefined' && window.matchMedia('(max-width: 640px)').matches;
-  const particleCount = isMobile ? 300 : 1000;
-  const dpr = isMobile ? [1, 1.5] : undefined;
+  // Reduced from 1000 → 600 desktop, 200 mobile to cut main-thread task duration
+  const particleCount = isMobile ? 200 : 600;
+  const dpr = isMobile ? [1, 1.5] as [number, number] : undefined;
 
   return (
     <Canvas
       dpr={dpr}
       camera={{ position: [0, 0, 10], fov: 75 }}
       style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}
+      // frameloop='demand' would be ideal but particles need continuous updates
     >
       <Particles count={particleCount} />
     </Canvas>

@@ -53,12 +53,22 @@ const ProjectsSection = () => {
               </CardContent>
               <CardFooter className="flex gap-4 mt-auto pt-6">
                 <Button variant="outline" asChild disabled={project.liveLink === "#"}>
-                  <a href={project.liveLink} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={project.liveLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Live Demo for ${project.title}`}
+                  >
                     Live Demo <ArrowUpRight className="ml-2 h-4 w-4" />
                   </a>
                 </Button>
                 <Button asChild disabled={project.sourceLink === "#"}>
-                  <a href={project.sourceLink} target="_blank" rel="noopener noreferrer">
+                  <a
+                    href={project.sourceLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Source Code for ${project.title}`}
+                  >
                     Source Code
                   </a>
                 </Button>
