@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import Header from '@/components/Header';
 import Hero3D from '@/components/Hero3D';
-import AboutSection from '@/components/AboutSection';
-import SkillsSection from '@/components/SkillsSection';
-import ProjectsSection from '@/components/ProjectsSection';
-import CertificationsSection from '@/components/CertificationsSection';
-import ContactSection from '@/components/ContactSection';
-import Footer from '@/components/Footer';
+
+// Lazy-load every below-the-fold section — splits them into separate JS chunks
+// so they are not downloaded until the browser needs them.
+const AboutSection        = lazy(() => import('@/components/AboutSection'));
+const SkillsSection       = lazy(() => import('@/components/SkillsSection'));
+const ProjectsSection     = lazy(() => import('@/components/ProjectsSection'));
+const CertificationsSection = lazy(() => import('@/components/CertificationsSection'));
+const ContactSection      = lazy(() => import('@/components/ContactSection'));
+const Footer              = lazy(() => import('@/components/Footer'));
 
 const Index = () => {
   return (
@@ -14,13 +17,17 @@ const Index = () => {
       <Header />
       <main>
         <Hero3D />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <CertificationsSection />
-        <ContactSection />
+        <Suspense fallback={null}>
+          <AboutSection />
+          <SkillsSection />
+          <ProjectsSection />
+          <CertificationsSection />
+          <ContactSection />
+        </Suspense>
       </main>
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 };

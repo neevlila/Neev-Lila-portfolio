@@ -16,4 +16,24 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Emit source maps in production so Lighthouse can report accurate diagnostics
+    sourcemap: true,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          // Vendor: React core — cached separately, rarely changes
+          "vendor-react": ["react", "react-dom", "react-router-dom"],
+          // Radix UI primitives — large but stable
+          "vendor-radix": [
+            "@radix-ui/react-tooltip",
+            "@radix-ui/react-slot",
+          ],
+          // Class-variance tooling
+          "vendor-utils": ["class-variance-authority", "clsx", "tailwind-merge"],
+        },
+      },
+    },
+  },
 }));
+
