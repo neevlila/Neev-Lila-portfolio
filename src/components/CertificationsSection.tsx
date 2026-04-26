@@ -17,15 +17,8 @@ const certifications = [
   {
     title: "Agentic AI on AWS",
     issuer: "AWS",
-    // AWS favicon from their official static CDN (long-lived cache)
     logoUrl: "https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png",
     credentialUrl: "https://drive.google.com/file/d/1X_VwKl7FCArOz1Iz9nx6m8EsjX040iXM/view?usp=sharing",
-  },
-  {
-    title: "n8n — No Code AI Agent Builder",
-    issuer: "Simplilearn",
-    logoUrl: "https://www.simplilearn.com/favicon.ico",
-    credentialUrl: "https://certificates.simplicdn.net/share/9137360_94957271760069546686.png",
   },
   {
     title: "OpenUSD: Using Attributes",
