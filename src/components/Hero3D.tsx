@@ -35,7 +35,7 @@ const Hero3D = () => {
         <h1 className="text-5xl md:text-7xl font-bold mb-4 animate-fade-in">
           Neev Lila
         </h1>
-        <p className="text-xl md:text-2xl text-primary font-medium mb-8 animate-fade-in animation-delay-500">
+        <p className="text-xl md:text-2xl text-blue-400 font-medium mb-8 animate-fade-in animation-delay-500">
           Frontend Developer &middot; AI Integration &middot; React, TypeScript &amp; Gemini API
         </p>
         <p className="text-lg md:text-xl mb-10 text-muted-foreground max-w-3xl mx-auto animate-fade-in animation-delay-1000">
