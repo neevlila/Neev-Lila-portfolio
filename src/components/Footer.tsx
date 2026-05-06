@@ -9,7 +9,7 @@ const Footer = () => {
       title: 'GitHub'
     },
     {
-      href: 'https://www.linkedin.com/in/neev-lila-292b46301',
+      href: 'https://www.linkedin.com/in/neevlila',
       icon: Linkedin,
       title: 'LinkedIn'
     },
