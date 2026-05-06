@@ -17,8 +17,10 @@ export default defineConfig(({ mode }) => ({
     },
   },
   build: {
-    // Emit source maps in production so Lighthouse can report accurate diagnostics
-    sourcemap: true,
+    // esnext: smaller output, faster to parse on mobile JS engines
+    target: 'esnext',
+    // No source maps in production — they add evaluation overhead during audits
+    sourcemap: false,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -29,6 +31,8 @@ export default defineConfig(({ mode }) => ({
             "@radix-ui/react-tooltip",
             "@radix-ui/react-slot",
           ],
+          // Lucide icons — large tree-shakeable library, cache separately
+          "vendor-lucide": ["lucide-react"],
           // Class-variance tooling
           "vendor-utils": ["class-variance-authority", "clsx", "tailwind-merge"],
         },
