@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrainCircuit, Layers, FlaskConical } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import neevPhoto from '@/assets/neev.jpg';
 
 const AboutSection = () => {
   const traits = [
@@ -34,7 +35,7 @@ const AboutSection = () => {
               {/* Glow ring behind the image */}
               <div className="absolute inset-0 rounded-2xl bg-primary/20 blur-xl scale-105" />
               <img
-                src="/assets/neev.jpg"
+                src={neevPhoto}
                 alt="Neev Lila — AI Product Builder"
                 width={280}
                 height={360}

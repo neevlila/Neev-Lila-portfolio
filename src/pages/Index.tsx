@@ -5,6 +5,7 @@ import Hero3D from '@/components/Hero3D';
 // Lazy-load every below-the-fold section — splits them into separate JS chunks
 // so they are not downloaded until the browser needs them.
 const AboutSection        = lazy(() => import('@/components/AboutSection'));
+const TimelineSection     = lazy(() => import('@/components/TimelineSection'));
 const SkillsSection       = lazy(() => import('@/components/SkillsSection'));
 const ProjectsSection     = lazy(() => import('@/components/ProjectsSection'));
 const CertificationsSection = lazy(() => import('@/components/CertificationsSection'));
@@ -19,6 +20,7 @@ const Index = () => {
         <Hero3D />
         <Suspense fallback={null}>
           <AboutSection />
+          <TimelineSection />
           <SkillsSection />
           <ProjectsSection />
           <CertificationsSection />
