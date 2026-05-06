@@ -34,7 +34,7 @@ const timeline = [
     title: "Open to AI Builder Roles & Freelance",
     description: "Actively looking for AI Builder, Prompt Engineering, and AI Workflow Design roles. Available for freelance projects. Portfolio ranking top 3 on Google for 'Neev Lila'.",
     tag: "Open to Work",
-    tagColor: "bg-primary/10 text-primary",
+    tagColor: "bg-blue-400/10 text-blue-400",
   },
 ];
 
@@ -83,7 +83,7 @@ const TimelineSection = () => {
                 {/* Center dot with year */}
                 <div className="absolute left-0 md:left-1/2 top-5 md:-translate-x-1/2 flex flex-col items-center gap-1">
                   <div className="w-12 h-12 rounded-full bg-background border-2 border-primary flex items-center justify-center z-10 shadow-lg shadow-primary/20">
-                    <span className="text-[10px] font-bold text-primary leading-none text-center">
+                    <span className="text-[10px] font-bold text-foreground leading-none text-center">
                       {item.year}
                     </span>
                   </div>

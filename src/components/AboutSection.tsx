@@ -56,7 +56,7 @@ const AboutSection = () => {
             <p className="text-lg text-muted-foreground leading-relaxed">
               I&apos;ve shipped four projects with live deployments &mdash; across Python, React, TypeScript, and four different AI APIs. Every project started as a specific problem and ended as a working product, not a tutorial clone.
             </p>
-            <p className="mt-6 text-sm font-medium text-primary">
+            <p className="mt-6 text-sm font-medium text-foreground">
               Currently open to AI Builder roles and freelance projects.
             </p>
           </div>
