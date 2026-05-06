@@ -7,18 +7,34 @@ import { ArrowUpRight } from 'lucide-react';
 const ProjectsSection = () => {
   const projects = [
     {
-      title: "Lawbot — AI Legal Assistant",
-      subtitle: "Smart India Hackathon 2025 · React + Gemini API",
-      description: "The core challenge: Gemini's default behavior hallucinates case law when asked legal questions. Solved by engineering a strict system prompt that instructs the model to cite general legal principles and explicitly flag uncertainty rather than fabricating citations. Frontend is React + TypeScript + Tailwind CSS; API calls run through a client-side service layer with response streaming for perceived speed. Deployed on Vercel with sub-2s cold start.",
+      title: "Jarvis — AI Desktop Assistant",
+      subtitle: "Voice-Activated · Python + Gemini 2.5 Pro · 1900+ lines",
+      description: "A full AI-integrated desktop automation system built in Python. Integrates Gemini 2.5 Pro for natural language conversation, speech recognition via pyttsx3, full Windows system automation through Win32 API and PyAutoGUI, real-time motion detection with OpenCV, YouTube Data API, QR code generation with Tkinter GUI, email drafting and sending, WiFi profile management, speed tests, and 25+ voice commands. Built for real daily use — not a demo project.",
+      techStack: ["Python", "Gemini API", "OpenCV", "SpeechRecognition", "PyAutoGUI", "Win32API", "YouTube Data API", "Tkinter"],
+      liveLink: "#",
+      sourceLink: "https://github.com/neevlila/Jarvis",
+    },
+    {
+      title: "Sustainable Token Analyzer",
+      subtitle: "React + TypeScript · Netlify Functions · NVIDIA Qwen 2.5 72B",
+      description: "A full-stack web app that analyzes AI prompts for token count, energy usage, API cost, and carbon footprint — then uses NVIDIA's Qwen 2.5 72B to rewrite them into leaner versions. Built with a React + TypeScript frontend, a Netlify serverless function as the API backend, and a Recharts dashboard tracking cumulative savings across sessions. Carbon calculations use the real global grid average of 0.386 kg CO₂/kWh. Four-tab layout: Dashboard, Analyzer, Comparison, Suggestions.",
+      techStack: ["React", "TypeScript", "Tailwind CSS", "Netlify Functions", "NVIDIA API", "Recharts", "Vite"],
+      liveLink: "sustainable-token-analyzer.netlify.app",
+      sourceLink: "https://github.com/neevlila/Sustainable-Token-Analyzer",
+    },
+    {
+      title: "Law-Bot — AI Legal Assistant",
+      subtitle: "Smart India Hackathon 2025 · React + Gemini API · Deployed on Vercel",
+      description: "The core challenge: Gemini's default behavior hallucinates case law when asked legal questions. Solved by engineering a strict system prompt that instructs the model to cite general legal principles and explicitly flag uncertainty rather than fabricating citations. Frontend is React + TypeScript + Tailwind CSS with client-side API calls and response streaming for perceived speed. Chat history persisted via browser local storage — no backend needed. Deployed on Vercel with sub-2s cold start.",
       techStack: ["React", "TypeScript", "Tailwind CSS", "Google Gemini API", "Vercel"],
       liveLink: "https://lawbot-teal.vercel.app/",
       sourceLink: "https://github.com/neevlila/Lawbot",
     },
     {
-      title: "NLP SMS Spam Classifier",
+      title: "AI-Based SMS Spam Detector",
       subtitle: "Text Classification · Python + scikit-learn · Deployed on Render",
-      description: "Trained a TF-IDF + Multinomial Naive Bayes pipeline on the UCI SMS Spam Collection (5,574 messages). Hit 97.4% accuracy and 100% precision on spam — precision was prioritized to eliminate false positives (legitimate messages wrongly blocked). Preprocessing pipeline: NLTK tokenization → stop-word removal → Porter stemming → TF-IDF vectorization. Serialized with Pickle, served via a Streamlit UI, and continuously deployed on Render.",
-      techStack: ["Python", "NLTK", "scikit-learn", "TF-IDF", "Streamlit", "Render"],
+      description: "Trained a TF-IDF + Logistic Regression pipeline on the UCI SMS Spam Collection (5,574 messages). Achieved 98% accuracy with precision prioritized to eliminate false positives — legitimate messages never wrongly blocked. Preprocessing pipeline: NLTK tokenization → stop-word removal → Porter stemming → TF-IDF bi-gram vectorization. Deployed as a Streamlit web app on Render with real-world spam examples preloaded for live testing. Built as an end-to-end product, not a notebook.",
+      techStack: ["Python", "NLTK", "scikit-learn", "TF-IDF", "Logistic Regression", "Streamlit", "Render"],
       liveLink: "https://ai-based-sms-spam-detection.onrender.com/",
       sourceLink: "https://github.com/neevlila/AI-Based-SMS-Spam-Detection",
     },
@@ -32,7 +48,7 @@ const ProjectsSection = () => {
             Featured Projects
           </h2>
           <p className="text-lg text-muted-foreground">
-            A selection of projects where I've turned complex problems into elegant, AI-powered solutions.
+            Four deployed projects — built across Python, React, TypeScript, and four different AI APIs. Each one started as a specific problem and ended as a working product.
           </p>
         </div>
 

@@ -1,44 +1,53 @@
 import React from 'react';
-import { Code, FlaskConical, Wrench } from 'lucide-react';
+import { BrainCircuit, Code, Wrench } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const SkillsSection = () => {
   const skillCategories = [
     {
-      category: "Frontend & Languages",
-      icon: Code,
+      category: "AI & Prompt Engineering",
+      icon: BrainCircuit,
       items: [
-        "React",
-        "TypeScript",
-        "Python",
         "Prompt Engineering",
-        "HTML & CSS",
-        "JavaScript",
-        "Google Gemini API"
+        "Prompt Architecture",
+        "AI Product Building",
+        "AI Workflow Design",
+        "LLM Integration",
+        "Generative AI",
+        "Agentic AI",
+        "AI-Assisted Development",
+        "No-Code Development",
+        "Rapid Prototyping",
       ]
     },
     {
-      category: "ML & Data",
-      icon: FlaskConical,
-      items: [
-        "NLP / Text Classification",
-        "scikit-learn",
-        "NLTK",
-        "TF-IDF Vectorization",
-        "Pandas"
-      ]
-    },
-    {
-      category: "Tools",
+      category: "Tools & Platforms",
       icon: Wrench,
       items: [
-        "Google Gemini",
-        "Docker",
-        "GitHub Copilot",
-        "Git & GitHub",
+        "Google Gemini API",
+        "ChatGPT (OpenAI)",
+        "Claude (Anthropic)",
+        "NVIDIA API",
+        "n8n",
+        "Streamlit",
+        "Supabase",
         "Vercel",
         "Netlify",
-        "Generative AI Tools"
+      ]
+    },
+    {
+      category: "Development",
+      icon: Code,
+      items: [
+        "Python",
+        "React.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "API Integration",
+        "Real-Time Data Processing",
+        "Edge Case Testing",
+        "Systems Design",
+        "Git & GitHub",
       ]
     },
   ];
@@ -51,7 +60,7 @@ const SkillsSection = () => {
             Skills
           </h2>
           <p className="text-lg text-muted-foreground">
-            React and TypeScript on the frontend. Python, scikit-learn, and NLTK for ML work. LLM integration via Google Gemini API. All connected with the tools below.
+            Prompt engineering and AI product building at the core. Python and React/TypeScript for development. Four AI APIs integrated across live deployed projects.
           </p>
         </div>
 

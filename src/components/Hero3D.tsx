@@ -36,10 +36,10 @@ const Hero3D = () => {
           Neev Lila
         </h1>
         <p className="text-xl md:text-2xl text-blue-400 font-medium mb-8 animate-fade-in animation-delay-500">
-          Frontend Developer &middot; AI Integration &middot; React, TypeScript &amp; Gemini API
+          AI Product Builder &middot; Prompt Engineer &middot; Python, React &amp; Multi-API Integration
         </p>
         <p className="text-lg md:text-xl mb-10 text-muted-foreground max-w-3xl mx-auto animate-fade-in animation-delay-1000">
-          I build responsive web interfaces with React and TypeScript, and integrate LLM&nbsp;APIs&nbsp;&mdash; primarily Google&nbsp;Gemini&nbsp;&mdash; to add real AI capability to products. Currently a B.Tech IT student, I&apos;ve shipped a legal chatbot for Smart India Hackathon 2025 and a live NLP&#8209;based SMS spam classifier.
+          I design and ship AI-powered tools using ChatGPT, Claude, and Gemini — not as helpers, but as the medium. System design first. Prompt architecture second. Ship.
         </p>
         
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in animation-delay-1500">
